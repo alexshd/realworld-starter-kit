@@ -10,7 +10,7 @@ module.exports = {
         heb: ['Arimo', 'sans-serif'],
       },
       fontSize: {
-        hg: ['25.5rem', { fontWeight: '500' }],
+        hg: ['25.5em', { fontWeight: '500' }],
       },
     },
   },

@@ -21,13 +21,14 @@ type alias Letter =
 
 
 type alias Model =
-    { letters : List Letter
+    { hebrew : List Letter
+    , arabic : List Letter
     }
 
 
 init : Model
 init =
-    Model
+    { hebrew =
         [ { l = 'א', pron = "Alef", sample = [ "אדם", "ארון" ] }
         , { l = 'ב', pron = "Bet", sample = [ "בית", "בורג" ] }
         , { l = 'ג', pron = "Gimel", sample = [ "בית", "בורג" ] }
@@ -54,20 +55,135 @@ init =
         , { l = 'ש', pron = "Shin", sample = [ "בית", "בורג" ] }
         , { l = 'ת', pron = "Tav", sample = [ "בית", "בורג" ] }
         ]
+    , arabic =
+        [ { l = 'أ'
+          , pron = "Alif"
+          , sample = [ "Arnab أرنب Rabbit" ]
+          }
+        , { l = 'ب'
+          , pron = "Bih"
+          , sample = [ "Bortoqalah برتقالة Orange" ]
+          }
+        , { l = 'ت'
+          , pron = "Tih"
+          , sample = [ "Tarabiza ترابيزه Table" ]
+          }
+        , { l = 'ث'
+          , pron = "Thih"
+          , sample = [ "thal'ab ثعلب Fox" ]
+          }
+        , { l = 'ج'
+          , pron = "Geem"
+          , sample = [ "gamal جمل Camel" ]
+          }
+        , { l = 'ح'
+          , pron = "H'h"
+          , sample = [ "Homar - حمار Donkey" ]
+          }
+        , { l = 'خ'
+          , pron = "Kh'h"
+          , sample = [ "Kharoof - خروف Sheep" ]
+          }
+        , { l = 'د'
+          , pron = "Dal"
+          , sample = [ "Dayman -دايما Always" ]
+          }
+        , { l = 'ذ'
+          , pron = "Thal"
+          , sample = [ "zaker -ذاكر Study" ]
+          }
+        , { l = 'ر'
+          , pron = "Rih"
+          , sample = [ "Riah رياح Winds" ]
+          }
+        , { l = 'ز'
+          , pron = "Zain"
+          , sample = [ "Zir زر Button" ]
+          }
+        , { l = 'س'
+          , pron = "seen"
+          , sample = [ "Sabbora سبورة Board" ]
+          }
+        , { l = 'ش'
+          , pron = "sheen"
+          , sample = [ "Sham'a شمعه Candel" ]
+          }
+        , { l = 'ص'
+          , pron = "Sad"
+          , sample = [ "Sayad صياد Hunter" ]
+          }
+        , { l = 'ض'
+          , pron = "Dadd"
+          , sample = [ "Dariba ضريبة Tax" ]
+          }
+        , { l = 'ط'
+          , pron = "Tah"
+          , sample = [ "Tariq طريق Road" ]
+          }
+        , { l = 'ظ'
+          , pron = "Zah"
+          , sample = [ "Zarif ظريف Nice" ]
+          }
+        , { l = 'ع'
+          , pron = "Ain"
+          , sample = [ "Amal عمل Work" ]
+          }
+        , { l = 'غ'
+          , pron = "Ghin"
+          , sample = [ "Ghaby غبي Stupid" ]
+          }
+        , { l = 'ف'
+          , pron = "Feh"
+          , sample = [ "Farhan فرحان Happy" ]
+          }
+        , { l = 'ق'
+          , pron = "Qaf"
+          , sample = [ "Qird قرد Monkey" ]
+          }
+        , { l = 'ك'
+          , pron = "kaf"
+          , sample = [ "Kilma كلمة Word" ]
+          }
+        , { l = 'ل'
+          , pron = "Lam"
+          , sample = [ "Lih ليه Why" ]
+          }
+        , { l = 'م'
+          , pron = "Meem"
+          , sample = [ "Meen مين Who" ]
+          }
+        , { l = 'ن'
+          , pron = "Noon"
+          , sample = [ "Na'am نعم Yes" ]
+          }
+        , { l = 'ه'
+          , pron = "Hih"
+          , sample = [ "Hia هى She" ]
+          }
+        , { l = 'و'
+          , pron = "Wow"
+          , sample = [ "warda وردة Flower" ]
+          }
+        , { l = 'ى'
+          , pron = "Yih"
+          , sample = [ "ynady ينادى Call" ]
+          }
+        ]
+    }
 
 
 type Msg
-    = Msg1
-    | Msg2
+    = Hebrew
+    | Arabic
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Msg1 ->
+        Hebrew ->
             model
 
-        Msg2 ->
+        Arabic ->
             model
 
 
@@ -81,7 +197,9 @@ view model =
         [ table [ class "table table-auto my-5" ]
             [ thead [] [ th [] [ text "l" ], th [] [ text "pron" ] ]
             , tbody [ class <| tailwind { css = "" } ]
-                (List.map showLetters model.letters)
+                (List.map showLetters model.hebrew
+                    ++ List.map showLetters model.arabic
+                )
             ]
 
         -- , div [ class <| tailwind { css = "" } ] [ words ]
