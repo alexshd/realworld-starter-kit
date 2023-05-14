@@ -4,6 +4,7 @@ import Browser
 import Helpers exposing (tailwind)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Words exposing (words)
 
 
 main : Program () Model Msg
@@ -43,7 +44,7 @@ init =
         , { l = 'נ', pron = "Nun", sample = [ "בית", "בורג" ] }
         , { l = 'ן', pron = "Nun S", sample = [ "בית", "בורג" ] }
         , { l = 'ס', pron = "Samekh", sample = [ "בית", "בורג" ] }
-        , { l = 'ע', pron = "`Ayin", sample = [ "בית", "בורג" ] }
+        , { l = 'ע', pron = "Ayin", sample = [ "בית", "בורג" ] }
         , { l = 'פ', pron = "Pey", sample = [ "בית", "בורג" ] }
         , { l = 'ף', pron = "Pey S", sample = [ "בית", "בורג" ] }
         , { l = 'צ', pron = "Zadik", sample = [ "בית", "בורג" ] }
@@ -75,24 +76,310 @@ view model =
     div
         [ class <|
             tailwind
-                { css = "bg-slate-100 px-4 gap-2 flex text-slate-800 flex-col text-7xl" }
+                { css = "flex flex-col gap-5 px-7" }
         ]
-        (List.map showLetters model.letters)
+        [ table [ class "table table-auto my-5" ]
+            [ thead [] [ th [] [ text "l" ], th [] [ text "pron" ] ]
+            , tbody [ class <| tailwind { css = "" } ]
+                (List.map showLetters model.letters)
+            ]
+
+        -- , div [ class <| tailwind { css = "" } ] [ words ]
+        -- , div [ class <| tailwind { css = "" } ] [ phoneCard ]
+        ]
 
 
 showLetters : Letter -> Html Msg
 showLetters card =
-    div [ class <| tailwind { css = "flex justify-around items-center text-center shadow-sm rounded-b-lg" } ]
-        [ span
+    tr
+        [ class <|
+            tailwind
+                { css = "text-9xl" }
+        ]
+        [ td
             [ lang "he"
-            , class <|
-                tailwind { css = "" }
+            , classList
+                [ ( tdDecor, True )
+                , ( tailwind
+                        { css = "font-heb text-pink-900"
+                        }
+                  , True
+                  )
+                ]
             ]
             [ String.fromChar card.l |> text ]
-        , span
-            [ lang "en"
-            , class <|
-                tailwind { css = "" }
+        , td
+            [ dir "ltr"
+            , lang "en"
+            , classList
+                [ ( tdDecor, True )
+                , ( tailwind
+                        { css = "text-6xl text-slate-500"
+                        }
+                  , True
+                  )
+                ]
             ]
             [ text card.pron ]
+        ]
+
+
+tdDecor : String
+tdDecor =
+    tailwind { css = "" }
+
+
+phoneCard : Html msg
+phoneCard =
+    div
+        [ class "min-w-screen min-h-screen bg-gray-50 flex items-center justify-center px-3 py-5"
+        ]
+        [ div
+            [ class "w-full bg-white text-gray-800 overflow-hidden border-4 border-white rounded-4xl shadow-lg relative"
+
+            -- , style "max-width" "414px"
+            ]
+            [ div
+                [ class "phone-top"
+                ]
+                [ div
+                    [ class "phone-top-inner"
+                    ]
+                    []
+                ]
+            , div
+                [ class "w-full bg-gradient-to-br from-yellow-500 to-pink-600 pt-12 pb-12 px-4 text-white"
+                ]
+                [ div
+                    [ class "mb-5"
+                    ]
+                    [ input
+                        [ type_ "text"
+                        , class "w-full text-white bg-white bg-opacity-20 rounded-full border-2 border-transparent focus:border-white focus:border-opacity-50 focus:outline-none px-3 py-1 leading-none text-sm transition-colors placeholder-white placeholder-opacity-50"
+                        , placeholder "Search..."
+                        ]
+                        []
+                    ]
+                , h1
+                    [ class "text-3xl font-light mb-3"
+                    ]
+                    [ text "Market Overview" ]
+                ]
+            , div
+                [ class "bg-gray-50 px-2"
+                ]
+                [ ul
+                    [ class "relative -top-10"
+                    ]
+                    [ li
+                        [ class "mb-2 bg-white p-3 shadow-lg rounded cursor-pointer transition-colors border-b-2 border-transparent hover:border-pink-500"
+                        ]
+                        [ div
+                            [ class "flex items-center"
+                            ]
+                            [ div
+                                [ class "w-16 text-3xl leading-none"
+                                ]
+                                [ i
+                                    [ class "cc BTC text-yellow-500"
+                                    ]
+                                    []
+                                ]
+                            , div
+                                [ class "w-full"
+                                ]
+                                [ text "Bitcoin"
+                                , span
+                                    [ class "ml-3 text-gray-400"
+                                    ]
+                                    [ text "BTC" ]
+                                ]
+                            , div
+                                [ class "text-green-500"
+                                ]
+                                [ text "+0.65%" ]
+                            ]
+                        ]
+                    , li
+                        [ class "mb-2 bg-white p-3 shadow-lg rounded cursor-pointer transition-colors border-b-2 border-transparent hover:border-pink-500"
+                        ]
+                        [ div
+                            [ class "flex items-center"
+                            ]
+                            [ div
+                                [ class "w-16 text-3xl leading-none"
+                                ]
+                                [ i
+                                    [ class "cc ETH text-gray-700"
+                                    ]
+                                    []
+                                ]
+                            , div
+                                [ class "w-full"
+                                ]
+                                [ text "Ethereum"
+                                , span
+                                    [ class "ml-3 text-gray-400"
+                                    ]
+                                    [ text "ETH" ]
+                                ]
+                            , div
+                                [ class "text-green-500"
+                                ]
+                                [ text "+0.98%" ]
+                            ]
+                        ]
+                    , li
+                        [ class "mb-2 bg-white p-3 shadow-lg rounded cursor-pointer transition-colors border-b-2 border-transparent hover:border-pink-500"
+                        ]
+                        [ div
+                            [ class "flex items-center"
+                            ]
+                            [ div
+                                [ class "w-16 text-3xl leading-none"
+                                ]
+                                [ i
+                                    [ class "cc XLM text-blue-300"
+                                    ]
+                                    []
+                                ]
+                            , div
+                                [ class "w-full"
+                                ]
+                                [ text "Stellar"
+                                , span
+                                    [ class "ml-3 text-gray-400"
+                                    ]
+                                    [ text "XLM" ]
+                                ]
+                            , div
+                                [ class "text-red-500"
+                                ]
+                                [ text "-1.24%" ]
+                            ]
+                        ]
+                    , li
+                        [ class "mb-2 bg-white p-3 shadow-lg rounded cursor-pointer transition-colors border-b-2 border-transparent hover:border-pink-500"
+                        ]
+                        [ div
+                            [ class "flex items-center"
+                            ]
+                            [ div
+                                [ class "w-16 text-3xl leading-none"
+                                ]
+                                [ i
+                                    [ class "cc XRP text-blue-700"
+                                    ]
+                                    []
+                                ]
+                            , div
+                                [ class "w-full"
+                                ]
+                                [ text "Ripple"
+                                , span
+                                    [ class "ml-3 text-gray-400"
+                                    ]
+                                    [ text "XRP" ]
+                                ]
+                            , div
+                                [ class "text-green-500"
+                                ]
+                                [ text "+0.30%" ]
+                            ]
+                        ]
+                    ]
+                ]
+            , div
+                [ class "px-5 bg-white pb-2"
+                ]
+                [ div
+                    [ class "flex"
+                    ]
+                    [ div
+                        [ class "flex-1 group"
+                        ]
+                        [ a
+                            [ href "#"
+                            , class "flex items-end justify-center text-center mx-auto px-4 w-full text-gray-400 group-hover:text-pink-500 border-b-2 border-transparent group-hover:border-pink-500"
+                            ]
+                            [ span
+                                [ class "block px-1"
+                                ]
+                                [ i
+                                    [ class "far fa-home text-xl pt-1 mb-1 block"
+                                    ]
+                                    []
+                                , span
+                                    [ class "block text-xs pb-1"
+                                    ]
+                                    [ text "Home" ]
+                                ]
+                            ]
+                        ]
+                    , div
+                        [ class "flex-1 group"
+                        ]
+                        [ a
+                            [ href "#"
+                            , class "flex items-end justify-center text-center mx-auto px-4 w-full text-gray-400 group-hover:text-pink-500 border-b-2 border-transparent group-hover:border-pink-500"
+                            ]
+                            [ span
+                                [ class "block px-1"
+                                ]
+                                [ i
+                                    [ class "far fa-compass text-xl pt-1 mb-1 block"
+                                    ]
+                                    []
+                                , span
+                                    [ class "block text-xs pb-1"
+                                    ]
+                                    [ text "Explore" ]
+                                ]
+                            ]
+                        ]
+                    , div
+                        [ class "flex-1 group"
+                        ]
+                        [ a
+                            [ href "#"
+                            , class "flex items-end justify-center text-center mx-auto px-4 w-full text-gray-400 group-hover:text-pink-500 border-b-2 border-transparent group-hover:border-pink-500"
+                            ]
+                            [ span
+                                [ class "block px-1"
+                                ]
+                                [ i
+                                    [ class "far fa-search text-xl pt-1 mb-1 block"
+                                    ]
+                                    []
+                                , span
+                                    [ class "block text-xs pb-1"
+                                    ]
+                                    [ text "Search" ]
+                                ]
+                            ]
+                        ]
+                    , div
+                        [ class "flex-1 group"
+                        ]
+                        [ a
+                            [ href "#"
+                            , class "flex items-end justify-center text-center mx-auto px-4 w-full text-gray-400 group-hover:text-pink-500 border-b-2 border-transparent group-hover:border-pink-500"
+                            ]
+                            [ span
+                                [ class "block px-1"
+                                ]
+                                [ i
+                                    [ class "far fa-cog text-xl pt-1 mb-1 block"
+                                    ]
+                                    []
+                                , span
+                                    [ class "block text-xs pb-1"
+                                    ]
+                                    [ text "Settings" ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         ]

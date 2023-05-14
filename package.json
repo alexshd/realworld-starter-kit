@@ -12,7 +12,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "lint": "elm-review",
-    "test": "elm-test-rs"
+    "test": "elm-test-rs",
+    "deploy": "yarn build; surge -p dist --domain offbeat-talk.surge.sh"
   },
   "dependencies": {
     "elm-debug-transformer": "^1.1.2"
@@ -25,7 +26,10 @@
     "autoprefixer": "^10.4.14",
     "elm-tooling": "^1.14.0",
     "postcss": "^8.4.23",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.2.8",
     "tailwindcss": "^3.3.2",
+    "tailwindcss-rtl": "^0.9.0",
     "vite": "^4.3.2",
     "vite-plugin-elm": "^2.8.0-beta.3",
     "vite-plugin-ssr": "^0.4.123"

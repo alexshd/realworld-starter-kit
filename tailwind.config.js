@@ -2,19 +2,17 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,elm}'],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       fontFamily: {
         heb: ['Arimo', 'sans-serif'],
       },
       fontSize: {
-        hg: [
-          '25.5rem',
-          {
-            fontWeight: '500',
-          },
-        ],
+        hg: ['25.5rem', { fontWeight: '500' }],
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-rtl'), require('@tailwindcss/forms')],
 }
