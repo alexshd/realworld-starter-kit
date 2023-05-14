@@ -21,155 +21,13 @@ type alias Letter =
 
 
 type alias Model =
-    { hebrew : List Letter
-    , arabic : List Letter
+    { letters : List Letter
     }
 
 
 init : Model
 init =
-    { hebrew =
-        [ { l = 'א', pron = "Alef", sample = [ "אדם", "ארון" ] }
-        , { l = 'ב', pron = "Bet", sample = [ "בית", "בורג" ] }
-        , { l = 'ג', pron = "Gimel", sample = [ "בית", "בורג" ] }
-        , { l = 'ד', pron = "Dalet", sample = [ "בית", "בורג" ] }
-        , { l = 'ה', pron = "Hey", sample = [ "בית", "בורג" ] }
-        , { l = 'ז', pron = "Zayin", sample = [ "בית", "בורג" ] }
-        , { l = 'ח', pron = "Chet", sample = [ "בית", "בורג" ] }
-        , { l = 'ט', pron = "Tet", sample = [ "בית", "בורג" ] }
-        , { l = 'י', pron = "Yod", sample = [ "בית", "בורג" ] }
-        , { l = 'כ', pron = "Kaf", sample = [ "בית", "בורג" ] }
-        , { l = 'ך', pron = "Kaf S", sample = [ "בית", "בורג" ] }
-        , { l = 'ל', pron = "Lamed", sample = [ "בית", "בורג" ] }
-        , { l = 'מ', pron = "Mem", sample = [ "בית", "בורג" ] }
-        , { l = 'נ', pron = "Nun", sample = [ "בית", "בורג" ] }
-        , { l = 'ן', pron = "Nun S", sample = [ "בית", "בורג" ] }
-        , { l = 'ס', pron = "Samekh", sample = [ "בית", "בורג" ] }
-        , { l = 'ע', pron = "Ayin", sample = [ "בית", "בורג" ] }
-        , { l = 'פ', pron = "Pey", sample = [ "בית", "בורג" ] }
-        , { l = 'ף', pron = "Pey S", sample = [ "בית", "בורג" ] }
-        , { l = 'צ', pron = "Zadik", sample = [ "בית", "בורג" ] }
-        , { l = 'ץ', pron = "Zadik S", sample = [ "בית", "בורג" ] }
-        , { l = 'ק', pron = "Kuf", sample = [ "בית", "בורג" ] }
-        , { l = 'ר', pron = "Raysh", sample = [ "בית", "בורג" ] }
-        , { l = 'ש', pron = "Shin", sample = [ "בית", "בורג" ] }
-        , { l = 'ת', pron = "Tav", sample = [ "בית", "בורג" ] }
-        ]
-    , arabic =
-        [ { l = 'أ'
-          , pron = "Alif"
-          , sample = [ "Arnab أرنب Rabbit" ]
-          }
-        , { l = 'ب'
-          , pron = "Bih"
-          , sample = [ "Bortoqalah برتقالة Orange" ]
-          }
-        , { l = 'ت'
-          , pron = "Tih"
-          , sample = [ "Tarabiza ترابيزه Table" ]
-          }
-        , { l = 'ث'
-          , pron = "Thih"
-          , sample = [ "thal'ab ثعلب Fox" ]
-          }
-        , { l = 'ج'
-          , pron = "Geem"
-          , sample = [ "gamal جمل Camel" ]
-          }
-        , { l = 'ح'
-          , pron = "H'h"
-          , sample = [ "Homar - حمار Donkey" ]
-          }
-        , { l = 'خ'
-          , pron = "Kh'h"
-          , sample = [ "Kharoof - خروف Sheep" ]
-          }
-        , { l = 'د'
-          , pron = "Dal"
-          , sample = [ "Dayman -دايما Always" ]
-          }
-        , { l = 'ذ'
-          , pron = "Thal"
-          , sample = [ "zaker -ذاكر Study" ]
-          }
-        , { l = 'ر'
-          , pron = "Rih"
-          , sample = [ "Riah رياح Winds" ]
-          }
-        , { l = 'ز'
-          , pron = "Zain"
-          , sample = [ "Zir زر Button" ]
-          }
-        , { l = 'س'
-          , pron = "seen"
-          , sample = [ "Sabbora سبورة Board" ]
-          }
-        , { l = 'ش'
-          , pron = "sheen"
-          , sample = [ "Sham'a شمعه Candel" ]
-          }
-        , { l = 'ص'
-          , pron = "Sad"
-          , sample = [ "Sayad صياد Hunter" ]
-          }
-        , { l = 'ض'
-          , pron = "Dadd"
-          , sample = [ "Dariba ضريبة Tax" ]
-          }
-        , { l = 'ط'
-          , pron = "Tah"
-          , sample = [ "Tariq طريق Road" ]
-          }
-        , { l = 'ظ'
-          , pron = "Zah"
-          , sample = [ "Zarif ظريف Nice" ]
-          }
-        , { l = 'ع'
-          , pron = "Ain"
-          , sample = [ "Amal عمل Work" ]
-          }
-        , { l = 'غ'
-          , pron = "Ghin"
-          , sample = [ "Ghaby غبي Stupid" ]
-          }
-        , { l = 'ف'
-          , pron = "Feh"
-          , sample = [ "Farhan فرحان Happy" ]
-          }
-        , { l = 'ق'
-          , pron = "Qaf"
-          , sample = [ "Qird قرد Monkey" ]
-          }
-        , { l = 'ك'
-          , pron = "kaf"
-          , sample = [ "Kilma كلمة Word" ]
-          }
-        , { l = 'ل'
-          , pron = "Lam"
-          , sample = [ "Lih ليه Why" ]
-          }
-        , { l = 'م'
-          , pron = "Meem"
-          , sample = [ "Meen مين Who" ]
-          }
-        , { l = 'ن'
-          , pron = "Noon"
-          , sample = [ "Na'am نعم Yes" ]
-          }
-        , { l = 'ه'
-          , pron = "Hih"
-          , sample = [ "Hia هى She" ]
-          }
-        , { l = 'و'
-          , pron = "Wow"
-          , sample = [ "warda وردة Flower" ]
-          }
-        , { l = 'ى'
-          , pron = "Yih"
-          , sample = [ "ynady ينادى Call" ]
-          }
-        ]
-    }
+    Model hebrew
 
 
 type Msg
@@ -181,10 +39,10 @@ update : Msg -> Model -> Model
 update msg model =
     case msg of
         Hebrew ->
-            model
+            { model | letters = hebrew }
 
         Arabic ->
-            model
+            { model | letters = arabic }
 
 
 view : Model -> Html Msg
@@ -194,12 +52,10 @@ view model =
             tailwind
                 { css = "flex flex-col gap-5 px-7" }
         ]
-        [ table [ class "table table-auto my-5" ]
-            [ thead [] [ th [] [ text "l" ], th [] [ text "pron" ] ]
-            , tbody [ class <| tailwind { css = "" } ]
-                (List.map showLetters model.hebrew
-                    ++ List.map showLetters model.arabic
-                )
+        [ langSelect
+        , table [ class "table table-auto my-5" ]
+            [ tbody [ class <| tailwind { css = "" } ]
+                (List.map showLetters model.letters)
             ]
 
         -- , div [ class <| tailwind { css = "" } ] [ words ]
@@ -245,6 +101,37 @@ showLetters card =
 tdDecor : String
 tdDecor =
     tailwind { css = "" }
+
+
+langSelect : Html msg
+langSelect =
+    div
+        [ class "text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+        ]
+        [ ul
+            [ class "flex flex-wrap -mb-px"
+            ]
+            [ li
+                [ class "mr-2"
+                ]
+                [ a
+                    [ href "#"
+                    , class "inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    ]
+                    [ text "Hebrew" ]
+                ]
+            , li
+                [ class "mr-2"
+                ]
+                [ a
+                    [ href "#"
+                    , class "inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                    , attribute "aria-current" "page"
+                    ]
+                    [ text "Arabic" ]
+                ]
+            ]
+        ]
 
 
 phoneCard : Html msg
@@ -501,3 +388,70 @@ phoneCard =
                 ]
             ]
         ]
+
+
+
+--- DATA
+
+
+hebrew : List Letter
+hebrew =
+    [ { l = 'א', pron = "Alef", sample = [ "אדם", "ארון" ] }
+    , { l = 'ב', pron = "Bet", sample = [ "בית", "בורג" ] }
+    , { l = 'ג', pron = "Gimel", sample = [ "בית", "בורג" ] }
+    , { l = 'ד', pron = "Dalet", sample = [ "בית", "בורג" ] }
+    , { l = 'ה', pron = "Hey", sample = [ "בית", "בורג" ] }
+    , { l = 'ז', pron = "Zayin", sample = [ "בית", "בורג" ] }
+    , { l = 'ח', pron = "Chet", sample = [ "בית", "בורג" ] }
+    , { l = 'ט', pron = "Tet", sample = [ "בית", "בורג" ] }
+    , { l = 'י', pron = "Yod", sample = [ "בית", "בורג" ] }
+    , { l = 'כ', pron = "Kaf", sample = [ "בית", "בורג" ] }
+    , { l = 'ך', pron = "Kaf S", sample = [ "בית", "בורג" ] }
+    , { l = 'ל', pron = "Lamed", sample = [ "בית", "בורג" ] }
+    , { l = 'מ', pron = "Mem", sample = [ "בית", "בורג" ] }
+    , { l = 'נ', pron = "Nun", sample = [ "בית", "בורג" ] }
+    , { l = 'ן', pron = "Nun S", sample = [ "בית", "בורג" ] }
+    , { l = 'ס', pron = "Samekh", sample = [ "בית", "בורג" ] }
+    , { l = 'ע', pron = "Ayin", sample = [ "בית", "בורג" ] }
+    , { l = 'פ', pron = "Pey", sample = [ "בית", "בורג" ] }
+    , { l = 'ף', pron = "Pey S", sample = [ "בית", "בורג" ] }
+    , { l = 'צ', pron = "Zadik", sample = [ "בית", "בורג" ] }
+    , { l = 'ץ', pron = "Zadik S", sample = [ "בית", "בורג" ] }
+    , { l = 'ק', pron = "Kuf", sample = [ "בית", "בורג" ] }
+    , { l = 'ר', pron = "Raysh", sample = [ "בית", "בורג" ] }
+    , { l = 'ש', pron = "Shin", sample = [ "בית", "בורג" ] }
+    , { l = 'ת', pron = "Tav", sample = [ "בית", "בורג" ] }
+    ]
+
+
+arabic : List Letter
+arabic =
+    [ { l = 'أ', pron = "Alif", sample = [ "Arnab أرنب Rabbit" ] }
+    , { l = 'ب', pron = "Bih", sample = [ "Bortoqalah برتقالة Orange" ] }
+    , { l = 'ت', pron = "Tih", sample = [ "Tarabiza ترابيزه Table" ] }
+    , { l = 'ث', pron = "Thih", sample = [ "thal'ab ثعلب Fox" ] }
+    , { l = 'ج', pron = "Geem", sample = [ "gamal جمل Camel" ] }
+    , { l = 'ح', pron = "H'h", sample = [ "Homar - حمار Donkey" ] }
+    , { l = 'خ', pron = "Kh'h", sample = [ "Kharoof - خروف Sheep" ] }
+    , { l = 'د', pron = "Dal", sample = [ "Dayman -دايما Always" ] }
+    , { l = 'ذ', pron = "Thal", sample = [ "zaker -ذاكر Study" ] }
+    , { l = 'ر', pron = "Rih", sample = [ "Riah رياح Winds" ] }
+    , { l = 'ز', pron = "Zain", sample = [ "Zir زر Button" ] }
+    , { l = 'س', pron = "seen", sample = [ "Sabbora سبورة Board" ] }
+    , { l = 'ش', pron = "sheen", sample = [ "Sham'a شمعه Candel" ] }
+    , { l = 'ص', pron = "Sad", sample = [ "Sayad صياد Hunter" ] }
+    , { l = 'ض', pron = "Dadd", sample = [ "Dariba ضريبة Tax" ] }
+    , { l = 'ط', pron = "Tah", sample = [ "Tariq طريق Road" ] }
+    , { l = 'ظ', pron = "Zah", sample = [ "Zarif ظريف Nice" ] }
+    , { l = 'ع', pron = "Ain", sample = [ "Amal عمل Work" ] }
+    , { l = 'غ', pron = "Ghin", sample = [ "Ghaby غبي Stupid" ] }
+    , { l = 'ف', pron = "Feh", sample = [ "Farhan فرحان Happy" ] }
+    , { l = 'ق', pron = "Qaf", sample = [ "Qird قرد Monkey" ] }
+    , { l = 'ك', pron = "kaf", sample = [ "Kilma كلمة Word" ] }
+    , { l = 'ل', pron = "Lam", sample = [ "Lih ليه Why" ] }
+    , { l = 'م', pron = "Meem", sample = [ "Meen مين Who" ] }
+    , { l = 'ن', pron = "Noon", sample = [ "Na'am نعم Yes" ] }
+    , { l = 'ه', pron = "Hih", sample = [ "Hia هى She" ] }
+    , { l = 'و', pron = "Wow", sample = [ "warda وردة Flower" ] }
+    , { l = 'ى', pron = "Yih", sample = [ "ynady ينادى Call" ] }
+    ]
