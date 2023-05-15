@@ -5,12 +5,15 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 
+words : Html msg
 words =
     div
-        [ class "wlv-item js-wlv-item"
+        [ tailwind { css = "wlv-item js-wlv-item" }
+            |> class
         ]
         [ div
-            [ class "wlv-item__box"
+            [ tailwind { css = "wlv-item__box" }
+                |> class
             ]
             [ div
                 [ class "wlv-item__checkbox-box"

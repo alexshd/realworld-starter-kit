@@ -4,6 +4,7 @@ import Browser
 import Helpers exposing (tailwind)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events
 import Words exposing (words)
 
 
@@ -52,7 +53,7 @@ view model =
             tailwind
                 { css = "flex flex-col gap-5 px-7" }
         ]
-        [ langSelect
+        [ langSelect model
         , table [ class "table table-auto my-5" ]
             [ tbody [ class <| tailwind { css = "" } ]
                 (List.map showLetters model.letters)
@@ -68,7 +69,7 @@ showLetters card =
     tr
         [ class <|
             tailwind
-                { css = "text-9xl" }
+                { css = "text-5xl" }
         ]
         [ td
             [ lang "he"
@@ -88,7 +89,7 @@ showLetters card =
             , classList
                 [ ( tdDecor, True )
                 , ( tailwind
-                        { css = "text-6xl text-slate-500"
+                        { css = "text-2xl text-slate-500"
                         }
                   , True
                   )
@@ -103,30 +104,47 @@ tdDecor =
     tailwind { css = "" }
 
 
-langSelect : Html msg
-langSelect =
-    div
-        [ class "text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
-        ]
+langSelect : Model -> Html Msg
+langSelect model =
+    div [ class <| tailwind { css = "flex mt-5 justify-center" } ]
         [ ul
-            [ class "flex flex-wrap -mb-px"
+            [ class <|
+                tailwind
+                    { css = """
+                    inline-flex gap-2 text-md  text-center
+                    font-medium text-gray-500
+                    dark:divide-gray-700 dark:text-gray-400 sm:flex
+                    """
+                    }
+            , dir "ltr"
             ]
             [ li
-                [ class "mr-2"
-                ]
-                [ a
-                    [ href "#"
-                    , class "inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                [ class <| tailwind { css = "flex shadow-lg" } ]
+                [ button
+                    [ Html.Events.onClick Hebrew
+                    , class <|
+                        tailwind
+                            { css = """
+                                active rounded-lg bg-white p-4 hover:bg-gray-50
+                        hover:text-gray-700 focus:outline-none focus:ring-inset focus:ring-2 focus:ring-blue-300
+                            dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white
+                                """
+                            }
                     ]
                     [ text "Hebrew" ]
                 ]
             , li
-                [ class "mr-2"
-                ]
-                [ a
-                    [ href "#"
-                    , class "inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
-                    , attribute "aria-current" "page"
+                [ class <| tailwind { css = "flex shadow-lg" } ]
+                [ button
+                    [ Html.Events.onClick Arabic
+                    , class <|
+                        tailwind
+                            { css = """
+                            rounded-lg bg-white p-4 hover:bg-gray-50
+                        hover:text-gray-700 focus:outline-none focus:ring-inset focus:ring-2 focus:ring-blue-300
+                            dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white
+                            """
+                            }
                     ]
                     [ text "Arabic" ]
                 ]
